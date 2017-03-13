@@ -1,5 +1,5 @@
 dill==0.2.5
-Django==1.8
+django==1.8
 et-xmlfile==1.0.1
 jdcal==1.2
 lxml==3.5.0
