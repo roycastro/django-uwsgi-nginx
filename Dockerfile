@@ -14,10 +14,11 @@
 
 FROM debian:latest
 
-MAINTAINER Dockerfiles
+MAINTAINER roycastro
+RUN echo "root:root" | chpasswd
+RUN useradd -ms /bin/bash sshuser
 
 # Install required packages and remove the apt packages cache when done.
-
 RUN apt-get update && \
     apt-get upgrade -y && \ 	
     apt-get install -y \
@@ -35,6 +36,7 @@ RUN apt-get update && \
 	libpq-dev \
 	nginx \
 	supervisor \
+	openssh-server \
 	sqlite3 && \
 	pip3 install -U pip setuptools && \
    	rm -rf /var/lib/apt/lists/*
@@ -74,4 +76,5 @@ COPY . /home/docker/code/
 RUN django-admin.py startproject website /home/docker/code/app/
 
 EXPOSE 80
+EXPOSE 22
 CMD ["supervisord", "-n"]
