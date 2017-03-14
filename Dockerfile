@@ -37,7 +37,7 @@ RUN apt-get update && \
 	supervisor \
 	sqlite3 && \
 	pip3 install -U pip setuptools && \
-   rm -rf /var/lib/apt/lists/*
+   	rm -rf /var/lib/apt/lists/*
 
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
  && echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
@@ -50,6 +50,7 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
 RUN pip3 install uwsgi
 RUN pip3 install --upgrade setuptools
 RUN pip install --upgrade setuptools
+RUN pip install ez_setup
 
 # setup all the configfiles
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
