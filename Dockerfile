@@ -23,7 +23,7 @@ RUN apt-get update && \
     apt-get install -y \
     	build-essential \
 	libncurses5-dev libncursesw5-dev libreadline6-dev \
-	libdb5.1-dev libgdbm-dev libsqlite3-dev libssl-dev \
+	libdb-dev libgdbm-dev libsqlite3-dev libssl-dev \
 	libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev \
 	libxml2-dev libxslt-dev \
     	wget \
