@@ -16,7 +16,7 @@ FROM alpine:latest
 
 MAINTAINER roycastro
 RUN echo "root:root" | chpasswd
-RUN useradd -ms /bin/bash sshuser
+RUN adduser -D -u 1000 sshuser
 
 # Install required packages and remove the apt packages cache when done.
 RUN apt-get update && \
