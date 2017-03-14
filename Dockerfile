@@ -43,6 +43,8 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
 
 # install uwsgi now because it takes a little while
 RUN pip3 install uwsgi
+RUN pip3 install --upgrade setuptools
+RUN pip install --upgrade setuptools
 
 # setup all the configfiles
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
