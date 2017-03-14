@@ -46,6 +46,9 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
  postgresql postgresql-client postgresql-contrib \
  && rm -rf /var/lib/apt/lists/*
 
+RUN pip install -U pip 
+RUN pip3 install -U pip 
+
 # install uwsgi now because it takes a little while
 RUN pip3 install uwsgi
 RUN pip3 install --upgrade setuptools
