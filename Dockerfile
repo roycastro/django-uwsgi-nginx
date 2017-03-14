@@ -32,6 +32,13 @@ RUN apt-get update && \
 	pip3 install -U pip setuptools && \
    rm -rf /var/lib/apt/lists/*
 
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+ && echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y acl \
+ postgresql postgresql-client postgresql-contrib \
+ && rm -rf /var/lib/apt/lists/*
+
 # install uwsgi now because it takes a little while
 RUN pip3 install uwsgi
 
