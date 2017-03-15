@@ -84,5 +84,6 @@ EXPOSE 22
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/home/docker/code/app/almacen"]
 
 USER postgres
-RUN psql --command "ALTER USER postgres WITH PASSWORD 'postgres';"
+RUN  /etc/init.d/postgresql start &&\
+psql --command "ALTER USER postgres WITH PASSWORD 'postgres';"
 #CMD ["supervisord", "-n"]
