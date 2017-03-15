@@ -18,6 +18,7 @@ MAINTAINER roycastro
 RUN echo "root:root" | chpasswd
 RUN useradd -ms /bin/bash sshuser
 
+
 # Install required packages and remove the apt packages cache when done.
 RUN apt-get update && \
     apt-get upgrade -y && \ 	
@@ -69,12 +70,13 @@ COPY app/requirements.txt /home/docker/code/app/
 RUN pip3 install -r /home/docker/code/app/requirements.txt
 
 # add (the rest of) our code
-COPY . /home/docker/code/
+#COPY . /home/docker/code/
 
 # install django, normally you would remove this step because your project would already
 # be installed in the code/app/ directory
-RUN django-admin.py startproject website /home/docker/code/app/
+#RUN django-admin.py startproject website /home/docker/code/app/
 
 EXPOSE 80
 EXPOSE 22
-CMD ["supervisord", "-n"]
+RUN echo "sshuser:root" | chpasswd
+#CMD ["supervisord", "-n"]
