@@ -17,7 +17,7 @@ FROM debian:latest
 MAINTAINER roycastro
 RUN echo "root:root" | chpasswd
 RUN useradd -ms /bin/bash sshuser
-
+RUN echo "sshuser:root" | chpasswd
 
 # Install required packages and remove the apt packages cache when done.
 RUN apt-get update && \
@@ -49,6 +49,7 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
  postgresql postgresql-client postgresql-contrib \
  && rm -rf /var/lib/apt/lists/*
 
+
 RUN pip install -U pip 
 RUN pip3 install -U pip 
 
@@ -69,14 +70,19 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 COPY app/requirements.txt /home/docker/code/app/
 RUN pip3 install -r /home/docker/code/app/requirements.txt
 
+
 # add (the rest of) our code
 #COPY . /home/docker/code/
 
 # install django, normally you would remove this step because your project would already
 # be installed in the code/app/ directory
 #RUN django-admin.py startproject website /home/docker/code/app/
-
+EXPOSE 5432
 EXPOSE 80
 EXPOSE 22
-RUN echo "sshuser:root" | chpasswd
+
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/home/docker/code/app/almacen"]
+
+USER postgres
+RUN psql --command "ALTER USER postgres WITH PASSWORD 'postgres';"
 #CMD ["supervisord", "-n"]
