@@ -86,4 +86,4 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/home/
 USER postgres
 RUN  /etc/init.d/postgresql start &&\
 psql --command "ALTER USER postgres WITH PASSWORD 'postgres';"
-#CMD ["supervisord", "-n"]
+CMD ["supervisord", "-n"]
