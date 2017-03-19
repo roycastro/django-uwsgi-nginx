@@ -8,7 +8,7 @@ openpyxl==2.3.3
 Pillow==3.1.1
 psycopg2==2.6.1
 pycrypto==2.6.1
-pyreadline==2.1
+pyreadline
 python-dateutil==2.5.3
 python-docx==0.8.5
 simplejson==3.8.2
