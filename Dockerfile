@@ -81,7 +81,7 @@ EXPOSE 5432
 EXPOSE 80
 EXPOSE 22
 
-VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/home/docker/code/app/almacen"]
+VOLUME  ["/var/lib/postgresql/9.6/main","/home/docker/code/app/almacen"]
 
 USER postgres
 RUN  /etc/init.d/postgresql start &&\
