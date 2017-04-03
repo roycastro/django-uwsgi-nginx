@@ -46,7 +46,7 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
  && echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y acl \
- postgresql postgresql-client postgresql-contrib \
+ postgresql-9.4 postgresql-client postgresql-contrib \
  && rm -rf /var/lib/apt/lists/*
 
 
